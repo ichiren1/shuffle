@@ -4,3 +4,5 @@ package-lock.json
 
 .vscode
 
+firebase-debug.log
+ui-debug.log

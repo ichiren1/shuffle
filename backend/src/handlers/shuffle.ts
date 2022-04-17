@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 
 function fisherYatesShuffle_(candidates: string[]): string[] {
   for (let i = candidates.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+    const j = Math.floor(Math.random() * (i + 1));
+    [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
   }
   return candidates;
 }
@@ -41,14 +41,14 @@ function getCandidates(req: Request): string[] {
 }
 
 type ShuffleResult = {
-  candidates: string[]
-  result: string[]
-}
+  candidates: string[];
+  result: string[];
+};
 
 type ChooseOneResult = {
-  candidates: string[]
-  result: string
-}
+  candidates: string[];
+  result: string;
+};
 
 const RockPaperScissor = {
   ROCK: "rock",
@@ -57,24 +57,24 @@ const RockPaperScissor = {
 } as const;
 
 type RockPaperScissorType =
-  typeof RockPaperScissor[keyof typeof RockPaperScissor]
+  typeof RockPaperScissor[keyof typeof RockPaperScissor];
 
 type RpsResult = {
-  candidates: string[]
+  candidates: string[];
   result: {
-    name: string
-    rps: RockPaperScissorType
-  }[]
+    name: string;
+    rps: RockPaperScissorType;
+  }[];
   state: {
-    type: "draw" | "finished"
+    type: "draw" | "finished";
     winner:
       | {
-          name: string
-          rps: RockPaperScissorType
+          name: string;
+          rps: RockPaperScissorType;
         }[]
-      | null
-  }
-}
+      | null;
+  };
+};
 
 /**
  *
@@ -82,20 +82,20 @@ type RpsResult = {
  * @returns
  */
 function judgeRockPagerScissor(result: {
-  rock: string[]
-  paper: string[]
-  scissor: string[]
+  rock: string[];
+  paper: string[];
+  scissor: string[];
 }):
   | {
-      type: "draw"
-      winner: null
+      type: "draw";
+      winner: null;
     }
   | {
-      type: "finished"
+      type: "finished";
       winner: {
-        name: string
-        rps: RockPaperScissorType
-      }[]
+        name: string;
+        rps: RockPaperScissorType;
+      }[];
     } {
   const rockCount = result.rock.length;
   const paperCount = result.paper.length;
@@ -153,28 +153,28 @@ function judgeRockPagerScissor(result: {
  */
 function rockPaperScissor(candidates: string[]):
   | {
-      type: "draw"
+      type: "draw";
       result: {
-        name: string
-        rps: RockPaperScissorType
-      }[]
-      winner: null
+        name: string;
+        rps: RockPaperScissorType;
+      }[];
+      winner: null;
     }
   | {
-      type: "finished"
+      type: "finished";
       result: {
-        name: string
-        rps: RockPaperScissorType
-      }[]
+        name: string;
+        rps: RockPaperScissorType;
+      }[];
       winner: {
-        name: string
-        rps: RockPaperScissorType
-      }[]
+        name: string;
+        rps: RockPaperScissorType;
+      }[];
     } {
   const rpsCount: {
-    rock: string[]
-    paper: string[]
-    scissor: string[]
+    rock: string[];
+    paper: string[];
+    scissor: string[];
   } = {
     rock: [],
     paper: [],
@@ -213,8 +213,8 @@ export const shuffleHandler = (req: Request, res: Response<ShuffleResult>) => {
 };
 
 export const chooseOneHandler = (
-    req: Request,
-    res: Response<ChooseOneResult>
+  req: Request,
+  res: Response<ChooseOneResult>
 ) => {
   const candidates = getCandidates(req);
   return res.send({
