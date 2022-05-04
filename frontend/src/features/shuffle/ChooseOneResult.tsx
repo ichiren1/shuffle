@@ -1,6 +1,11 @@
+import './ChooseOneResult.css';
+
 export function ChooseOneResult(props: ChooseOneResultPropType) {
   return (
-    <div>{ props.result }</div>
+    <>
+      <h3>1人選ぶの結果</h3>
+      <div className="ChooseOneResult-result">{props.result}</div>
+    </>
   )
 }
 

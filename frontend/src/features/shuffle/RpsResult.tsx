@@ -1,30 +1,53 @@
+import './RpsResult.css';
+
 export function RpsResult(props: RpsResultPropType) {
+  const getRpsIcon = (rps: RockPaperScissorType): string => {
+    switch (rps) {
+      case RockPaperScissor.PAPER:
+        return "🖐";
+      case RockPaperScissor.SCISSOR:
+        return "✌️";
+      case RockPaperScissor.ROCK:
+        return "✊";
+    }
+  }
+
+  const getRpsTitle = (rps: RockPaperScissorType): string => {
+    switch (rps) {
+      case RockPaperScissor.PAPER:
+        return "パー";
+      case RockPaperScissor.SCISSOR:
+        return "チョキ";
+      case RockPaperScissor.ROCK:
+        return "グー";
+    }
+  }
+
   return (
-    <div>
-      <div>
-      {props.result.map((result, index) => {
-        return (
-          <div key={index}>
-            <span>{ result.rps }</span>
-            <span>{ result.name }</span>
-          </div>
-        )
-      })}
-      </div>
-      <div>
-        {props.state.type === 'draw' && <div>{ props.state.type }</div>}
-        {props.state.type === 'finished' && props.state.winner && (
-          <div>
-            <div>{props.state.type}</div>
-            {props.state.winner.map((winner, index) => {
-              return (
-                <div key={ index }>{winner.name}</div>
-              )
-            })}
-          </div>
-        )}
-      </div>
-    </div>
+    <>
+      <h3 className='RpsResult-title'>じゃんけんの結果</h3>
+      {props.state.type === 'draw' && <div>あいこ</div>}
+      {props.state.type === 'finished' && props.state.winner && (
+        <>
+          <div>🏆 Winner 🏆</div>
+          {props.state.winner.map((winner, index) => {
+            return (
+              <div key={ index }>{winner.name}</div>
+            )
+          })}
+        </>
+      )}
+      <ul className='RpsResult-results'>
+        {props.result.map((result, index) => {
+          return (
+            <li className='RpsResult-results-item' key={index}>
+              <span title={getRpsTitle(result.rps)} className='RpsResult-rps-icon'>{ getRpsIcon(result.rps) }</span>
+              <span>{ result.name }</span>
+            </li>
+          )
+        })}
+      </ul>
+    </>
   )
 }
 
