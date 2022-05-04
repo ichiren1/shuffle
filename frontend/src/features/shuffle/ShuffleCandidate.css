@@ -1,0 +1,51 @@
+.ShuffleCandidate {
+  border: 1px solid #cacaca;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 8px 8px rgba(183, 193, 211, 0.5);
+  min-width: 300px;
+  min-height: 180px;
+}
+
+.ShuffleCandidate-title {
+  margin: 0;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.ShuffleCandidate-candidate-name-input {
+  padding: 9px;
+  border: 1px solid #cacaca;
+}
+
+.ShuffleCandidate-candidate-add-button {
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid #cacaca;
+  cursor: pointer;
+}
+
+#ShuffleCandidate-empty-message {
+  margin-top: 1rem;
+}
+
+.ShuffleCandidate-candidates {
+  padding-inline-start: 8px;
+}
+
+.ShuffleCandidate-candidate-item {
+  display: flex;
+  margin: 12px 0;
+}
+
+.ShuffleCandidate-candidate-remove-button {
+  margin-right: 16px;
+  background: white;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.ShuffleCandidate-candidate-remove-button:hover {
+  color: red;
+  border-color: red;
+}

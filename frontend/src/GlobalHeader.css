@@ -1,0 +1,14 @@
+.GlobalHeader {
+  position: fixed;
+  top: 0;
+  color: white;
+  background: #2962ff;
+  width: 100vw;
+  font-size: 12px;
+  padding-left: 16px;
+}
+
+.GlobalHeader-title {
+  margin: 12px;
+  font-size: 1.3rem;
+}

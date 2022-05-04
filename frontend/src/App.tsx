@@ -1,12 +1,14 @@
-import React from 'react';
-
 import { Shuffle } from './features/shuffle/Shuffle'
+import { GlobalHeader } from './GlobalHeader'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Shuffle />
+      <GlobalHeader />
+      <div className="app-content">
+        <Shuffle />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,18 @@
+.ShuffleResultWrapper {
+  border: 1px solid #cacaca;
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 250px;
+  min-height: 180px;
+  box-shadow: 0 8px 8px rgba(183, 193, 211, 0.5);
+}
+
+.ShuffleResultWrapper-title {
+  margin: 0;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+#ShuffleResultWrapper-results-empty-message {
+  width: 250px;
+}

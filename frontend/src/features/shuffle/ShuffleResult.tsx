@@ -1,14 +1,18 @@
+import './ShuffleResult.css';
+
 export function ShuffleResult(props: ShuffleResultPropType) {
   return (
     <div>
-    {props.result.map((result, index) => {
-      return (
-        <div key={index}>
-          <span>{ index+1 }</span>
-          <span>{ result }</span>
-        </div>
-      )
-    })}
+      <h3>シャッフルの結果</h3>
+      <ul className='ShuffleResult-results'>
+        {props.result.map((result, index) => {
+        return (
+          <li className='ShuffleResult-results-item' key={index}>
+            <span>{ result }</span>
+          </li>
+        )
+      })}
+      </ul>
     </div>
   )
 }

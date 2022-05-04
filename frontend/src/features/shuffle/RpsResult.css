@@ -1,0 +1,16 @@
+.RpsResult-title {
+  margin-bottom: 8px;
+}
+
+.RpsResult-results {
+  padding-inline-start: 8px;
+}
+
+.RpsResult-results-item {
+  display: flex;
+  margin: 4px 0;
+}
+
+.RpsResult-rps-icon {
+  padding-right: 8px;
+}
