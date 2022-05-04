@@ -1,0 +1,30 @@
+.Shuffle {
+  margin-top: 46px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.Shuffle-actions-wrapper {
+  width: 200px;
+}
+
+.Shuffle-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.Shuffle-action {
+  margin: 16px 32px;
+  padding: 8px;
+  background: white;
+  border: 1px solid #cacaca;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 4px rgba(183, 193, 211, 0.5);
+}
+
+.Shuffle-action:hover {
+  background: #888;
+  color: white;
+}
