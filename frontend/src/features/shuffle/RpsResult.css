@@ -1,5 +1,10 @@
 .RpsResult-title {
   margin-bottom: 8px;
+  float: left;
+}
+
+.RpsResult-state {
+  clear: left;
 }
 
 .RpsResult-results {

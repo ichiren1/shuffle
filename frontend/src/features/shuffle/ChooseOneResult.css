@@ -1,4 +1,9 @@
+.ChooseOneResult-title {
+  float: left;
+}
+
 .ChooseOneResult-result {
   padding-inline-start: 8px;
   margin-top: 40px;
+  clear: left;
 }
