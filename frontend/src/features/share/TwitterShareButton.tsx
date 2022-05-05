@@ -11,7 +11,7 @@ export function TwitterShareButton(props: TwitterShareButtonPropType) {
       case 'ChooseOne':
         return "1人選ぶの結果\n" + props.result + "\n";
       case 'Rps':
-        return "じゃんけんの結果\n" + props.state.type === 'draw' ? 'あいこ\n' : '🏆Winner🏆\n' + props.state.winner!.map(w => w.name).join('\n') + "\n";
+        return "じゃんけんの結果\n" + props.state.type === 'draw' ? 'あいこ\n' : '🏆Winner🏆\n' + props.state.winner?.map(w => w.name).join('\n') + "\n";
     }
   }
 
