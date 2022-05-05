@@ -1,0 +1,6 @@
+@media screen and (max-width: 700px) {
+  .ShuffleResultWrapper {
+    box-sizing: border-box;
+    flex: 1;
+  }
+}
