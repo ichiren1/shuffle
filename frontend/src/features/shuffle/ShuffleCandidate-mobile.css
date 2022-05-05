@@ -2,5 +2,6 @@
   .ShuffleCandidate {
     box-sizing: border-box;
     margin-bottom: 16px;
+    flex: 1;
   }
 }
