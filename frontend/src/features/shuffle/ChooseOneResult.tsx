@@ -1,9 +1,11 @@
 import './ChooseOneResult.css';
+import { TwitterShareButton } from "../share/TwitterShareButton";
 
 export function ChooseOneResult(props: ChooseOneResultPropType) {
   return (
     <>
-      <h3>1人選ぶの結果</h3>
+      <h3 className='ChooseOneResult-title' >1人選ぶの結果</h3>
+      <TwitterShareButton result={props.result} candidates={props.candidates} type={props.type} />
       <div className="ChooseOneResult-result">{props.result}</div>
     </>
   )

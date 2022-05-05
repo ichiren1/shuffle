@@ -1,6 +1,10 @@
 .ShuffleResult-results {
   padding-inline-start: 8px;
-  margin-top: 40px;
+  clear: left;
+}
+
+.ShuffleResult-title {
+  float: left;
 }
 
 .ShuffleResult-results-item {

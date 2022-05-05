@@ -1,4 +1,5 @@
 import './RpsResult.css';
+import { TwitterShareButton } from "../share/TwitterShareButton";
 
 export function RpsResult(props: RpsResultPropType) {
   const getRpsIcon = (rps: RockPaperScissorType): string => {
@@ -26,23 +27,26 @@ export function RpsResult(props: RpsResultPropType) {
   return (
     <>
       <h3 className='RpsResult-title'>じゃんけんの結果</h3>
-      {props.state.type === 'draw' && <div>あいこ</div>}
-      {props.state.type === 'finished' && props.state.winner && (
-        <>
-          <div>🏆 Winner 🏆</div>
-          {props.state.winner.map((winner, index) => {
-            return (
-              <div key={ index }>{winner.name}</div>
-            )
-          })}
-        </>
-      )}
+      <TwitterShareButton result={props.result} candidates={props.candidates} state={props.state} type={props.type} />
+      <div className='RpsResult-state'>
+        {props.state.type === 'draw' && <div>あいこ</div>}
+        {props.state.type === 'finished' && props.state.winner && (
+          <>
+            <div>🏆 Winner 🏆</div>
+            {props.state.winner.map((winner, index) => {
+              return (
+                <div key={index}>{winner.name}</div>
+              )
+            })}
+          </>
+        )}
+      </div>
       <ul className='RpsResult-results'>
         {props.result.map((result, index) => {
           return (
             <li className='RpsResult-results-item' key={index}>
-              <span title={getRpsTitle(result.rps)} className='RpsResult-rps-icon'>{ getRpsIcon(result.rps) }</span>
-              <span>{ result.name }</span>
+              <span title={getRpsTitle(result.rps)} className='RpsResult-rps-icon'>{getRpsIcon(result.rps)}</span>
+              <span>{result.name}</span>
             </li>
           )
         })}
@@ -71,10 +75,10 @@ export type RpsResultPropType = {
   state: {
     type: "draw" | "finished"
     winner:
-      | {
-          name: string
-          rps: RockPaperScissorType
-        }[]
-      | null
+    | {
+      name: string
+      rps: RockPaperScissorType
+    }[]
+    | null
   }
 }
