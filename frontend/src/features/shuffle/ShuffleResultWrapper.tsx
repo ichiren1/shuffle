@@ -3,6 +3,7 @@ import { ChooseOneResult as ChooseOneResultComponent } from './ChooseOneResult'
 import { RpsResult as RpsResultComponent } from './RpsResult'
 import { ChooseOneResult, RpsResult, ShuffleResult } from './request'
 import './ShuffleResultWrapper.css';
+import './ShuffleResultWrapper-mobile.css';
 
 export function ShuffleResultWrapper(props: ShuffleResultWrapperPropType) {
 

@@ -5,6 +5,7 @@ import {
   addCandidate, removeCandidate, currentCandidateValue
 } from './shuffleSlice';
 import './ShuffleCandidate.css'
+import './ShuffleCandidate-mobile.css'
 
 export function ShuffleCandidate() {
   const candidates = useAppSelector(currentCandidateValue)
@@ -36,7 +37,7 @@ export function ShuffleCandidate() {
               <button className="ShuffleCandidate-candidate-remove-button" onClick={() => dispatch(removeCandidate(c.id))}>x</button>
               <span>{c.name}</span>
             </li>
-          ); 
+          );
         })}
       </ul>
     </div>

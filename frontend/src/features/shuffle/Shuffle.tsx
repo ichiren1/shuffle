@@ -8,6 +8,7 @@ import { ShuffleResultWrapper } from './ShuffleResultWrapper';
 import { ShuffleCandidate } from './ShuffleCandidate';
 import { chooseOneRequest, ChooseOneResult, rpsRequest, RpsResult, shuffleRequest, ShuffleResult } from './request';
 import "./Shuffle.css";
+import "./Shuffle-mobile.css";
 
 export function Shuffle() {
   const candidates = useAppSelector(currentCandidateValue)

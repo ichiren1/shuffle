@@ -1,0 +1,26 @@
+@media screen and (max-width: 700px) {
+  .Shuffle {
+    margin-top: 16px;
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    /* actionが隠れてしまうの用 */
+    margin-bottom: 64px;
+  }
+
+  .Shuffle-actions-wrapper {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+  }
+
+  .Shuffle-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .Shuffle-action {
+    margin: 4px;
+  }
+}
