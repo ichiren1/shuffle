@@ -2,7 +2,7 @@ import { useState, KeyboardEvent } from "react";
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
-  addCandidate, removeCandidate, currentCandidateValue
+  addCandidate, modifyCandidate, removeCandidate, currentCandidateValue
 } from './shuffleSlice';
 import './ShuffleCandidate.css'
 import './ShuffleCandidate-mobile.css'
@@ -46,11 +46,11 @@ export function ShuffleCandidate() {
       <div>{'現在の候補者数: ' + candidates.length + '人'}</div>
       {candidates.length === 0 && <div id="ShuffleCandidate-empty-message">候補者がいません。<br />追加ボタンから追加してください。</div>}
       <ul className="ShuffleCandidate-candidates">
-        {candidates.map(c => {
+        {candidates.map((c, index) => {
           return (
             <li className="ShuffleCandidate-candidate-item" key={c.id}>
               <button className="ShuffleCandidate-candidate-remove-button" onClick={() => dispatch(removeCandidate(c.id))}>x</button>
-              <span>{c.name}</span>
+              <input type="text" className="ShuffleCandidate-candidate-item-name-input" defaultValue={c.name} onChange={(e) => dispatch(modifyCandidate({ index, name: e.target.value }))} size={24}></input>
             </li>
           );
         })}

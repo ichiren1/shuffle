@@ -57,6 +57,11 @@
   margin: 12px 0;
 }
 
+.ShuffleCandidate-candidate-item-name-input {
+  padding: 9px 24px 9px 9px;
+  border: 1px solid #cacaca;
+}
+
 .ShuffleCandidate-candidate-remove-button {
   margin-right: 16px;
   background: white;

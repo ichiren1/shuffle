@@ -28,6 +28,15 @@ export const shuffleSlice = createSlice({
         id: ulid(),
       })
     },
+    modifyCandidate: (
+      state,
+      action: PayloadAction<{ index: number; name: string }>
+    ) => {
+      state.candidates[action.payload.index] = {
+        ...state.candidates[action.payload.index],
+        name: action.payload.name,
+      }
+    },
     removeCandidate: (state, action: PayloadAction<string>) => {
       state.candidates = state.candidates.filter((c) => c.id !== action.payload)
     },
@@ -37,6 +46,7 @@ export const shuffleSlice = createSlice({
 export const currentCandidateValue = (state: RootState) =>
   state.shuffle.candidates
 
-export const { addCandidate, removeCandidate } = shuffleSlice.actions
+export const { addCandidate, removeCandidate, modifyCandidate } =
+  shuffleSlice.actions
 
 export default shuffleSlice.reducer
