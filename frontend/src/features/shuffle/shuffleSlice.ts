@@ -20,6 +20,9 @@ export const shuffleSlice = createSlice({
   initialState,
   reducers: {
     addCandidate: (state, action: PayloadAction<string>) => {
+      if (action.payload === "") {
+        return
+      }
       state.candidates.push({
         name: action.payload,
         id: ulid(),

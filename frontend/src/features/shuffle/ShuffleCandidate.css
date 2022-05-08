@@ -14,8 +14,27 @@
 }
 
 .ShuffleCandidate-candidate-name-input {
-  padding: 9px;
+  padding: 9px 24px 9px 9px;
   border: 1px solid #cacaca;
+}
+
+.ShuffleCandidate-candidate-name-input-wrapper {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+}
+
+.ShuffleCandidate-name-clear-button {
+  position: absolute;
+  background: white;
+  border: none;
+  right: 2px;
+  padding: 8px;
+}
+
+.ShuffleCandidate-name-clear-button:hover {
+  background: #cacaca;
+  color: white;
 }
 
 .ShuffleCandidate-candidate-add-button {
