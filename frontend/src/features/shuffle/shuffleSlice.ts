@@ -23,21 +23,18 @@ export const shuffleSlice = createSlice({
       if (action.payload === "") {
         return
       }
-      state.indexCount++
       state.candidates.push({
-        prefix: state.indexCount + "",
         name: action.payload,
         id: ulid(),
       })
     },
     modifyCandidate: (
       state,
-      action: PayloadAction<{ index: number; name: string; prefix: string }>
+      action: PayloadAction<{ index: number; name: string }>
     ) => {
       state.candidates[action.payload.index] = {
         ...state.candidates[action.payload.index],
         name: action.payload.name,
-        prefix: action.payload.prefix,
       }
     },
     removeCandidate: (state, action: PayloadAction<string>) => {
