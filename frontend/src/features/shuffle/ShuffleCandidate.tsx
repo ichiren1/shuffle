@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, KeyboardEvent } from "react";
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
@@ -14,10 +14,25 @@ export function ShuffleCandidate() {
   const defaultName = "しゃっふる太郎1";
   const [name, setName] = useState(defaultName);
 
+  const handleKeyboardEvent = (event: KeyboardEvent): void => {
+    if (event.nativeEvent.isComposing || event.key === "229") {
+      // IME入力中は無視する
+      return;
+    }
+    if (event.key === "Enter") {
+      dispatch(addCandidate(name));
+      // Enterから追加したときは入力しているときなので入力ボックスの中身をclearする
+      setName("");
+    };
+  }
+
   return (
     <div className="ShuffleCandidate">
       <h2 className="ShuffleCandidate-title">候補</h2>
-      <input className="ShuffleCandidate-candidate-name-input" placeholder="名前" value={name} onChange={(e) => setName(e.target.value)} />
+      <div className="ShuffleCandidate-candidate-name-input-wrapper">
+        <input className="ShuffleCandidate-candidate-name-input" placeholder="名前" value={name} onKeyDown={handleKeyboardEvent} onChange={(e) => setName(e.target.value)} size={24} />
+        {name !== "" && <button className="ShuffleCandidate-name-clear-button" onClick={() => setName("")}>x</button>}
+      </div>
       <button className="ShuffleCandidate-candidate-add-button" onClick={() => {
         dispatch(addCandidate(name));
         const result = name.match(/^(?<n>[^\d]+)(?<i>\d+)$/)
