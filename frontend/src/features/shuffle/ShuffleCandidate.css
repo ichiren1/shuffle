@@ -7,10 +7,44 @@
   min-height: 180px;
 }
 
+.ShuffleCandidate-header {
+  display: flex;
+}
+
+.ShuffleCandidate-menu-wrapper {
+  position: relative;
+}
+
+.ShuffleCandidate-menu {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 8px 8px rgba(183, 193, 211, 0.5);
+}
+
+.ShuffleCandidate-menu button {
+  background: white;
+  padding: 4px;
+  border-radius: 0;
+}
+
+.ShuffleCandidate-menu.__hide {
+  display: none;
+}
+
+.ShuffleCandidate-menu button:hover {
+  background: #cacaca;
+  color: white;
+}
+
 .ShuffleCandidate-title {
   margin: 0;
   margin-bottom: 12px;
   font-size: 16px;
+  flex: 1;
 }
 
 .ShuffleCandidate-candidate-name-input {
@@ -26,7 +60,6 @@
 
 .ShuffleCandidate-name-clear-button {
   position: absolute;
-  background: white;
   border: none;
   right: 2px;
   padding: 8px;
@@ -39,8 +72,6 @@
 
 .ShuffleCandidate-candidate-add-button {
   padding: 7px 12px;
-  background: white;
-  border: 1px solid #cacaca;
   cursor: pointer;
 }
 
@@ -63,13 +94,13 @@
 }
 
 .ShuffleCandidate-candidate-remove-button {
-  margin-right: 16px;
-  background: white;
-  border: 1px solid transparent;
+  margin-right: 12px;
   cursor: pointer;
+  padding: 0 8px;
 }
 
 .ShuffleCandidate-candidate-remove-button:hover {
-  color: red;
-  border-color: red;
+  color: white;
+  background: #ff2929;
+  border-color: #ff2929;
 }

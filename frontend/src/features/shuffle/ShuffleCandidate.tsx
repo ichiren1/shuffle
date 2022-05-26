@@ -6,6 +6,9 @@ import {
 } from './shuffleSlice';
 import './ShuffleCandidate.css'
 import './ShuffleCandidate-mobile.css'
+import { saveTemplates, fetchTemplates } from '../../usecase/TemplateUseCase'
+import { TemplateDialog } from './TemplateDialog'
+import { TemplateDto } from "../../query/TemplateDto";
 
 export function ShuffleCandidate() {
   const candidates = useAppSelector(currentCandidateValue)
@@ -13,6 +16,9 @@ export function ShuffleCandidate() {
 
   const defaultName = "しゃっふる太郎1";
   const [name, setName] = useState(defaultName);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenDialog, setIsOpenDialog] = useState(false);
+  const [templates, setTemplates] = useState<TemplateDto[] | null>(null);
 
   const handleKeyboardEvent = (event: KeyboardEvent): void => {
     if (event.nativeEvent.isComposing || event.key === "229") {
@@ -26,9 +32,39 @@ export function ShuffleCandidate() {
     };
   }
 
+  const handleSaveTemplates = async () => {
+    const title = window.prompt('テンプレート名を入力', new Date().toLocaleString())
+    if (title === null) {
+      return;
+    }
+    const templates = await fetchTemplates()
+    setTemplates(templates)
+    if (templates) {
+      saveTemplates([...templates, { candidate: candidates, title }])
+    } else {
+      saveTemplates([{ candidate: candidates, title }])
+    }
+  }
+
+  const handleLoadTemplates = async () => {
+    const templates = await fetchTemplates()
+    setTemplates(templates)
+    setIsOpenMenu(false)
+    setIsOpenDialog(true)
+  }
+
   return (
     <div className="ShuffleCandidate">
-      <h2 className="ShuffleCandidate-title">候補</h2>
+      <div className="ShuffleCandidate-header">
+        <h2 className="ShuffleCandidate-title">候補</h2>
+        <div className="ShuffleCandidate-menu-wrapper">
+          <button className="ShuffleCandidate-menu-button" onClick={() => setIsOpenMenu(!isOpenMenu)}>三</button>
+          <div className={["ShuffleCandidate-menu", !isOpenMenu ? "__hide" : ""].join(" ")}>
+            <button onClick={handleSaveTemplates}>現在の候補者をテンプレートとして保存する</button>
+            <button onClick={handleLoadTemplates}>保存したテンプレートから読み込む</button>
+          </div>
+        </div>
+      </div>
       <div className="ShuffleCandidate-candidate-name-input-wrapper">
         <input className="ShuffleCandidate-candidate-name-input" placeholder="名前" value={name} onKeyDown={handleKeyboardEvent} onChange={(e) => setName(e.target.value)} size={24} />
         {name !== "" && <button className="ShuffleCandidate-name-clear-button" onClick={() => setName("")}>x</button>}
@@ -55,6 +91,9 @@ export function ShuffleCandidate() {
           );
         })}
       </ul>
+      {isOpenDialog && <TemplateDialog templates={templates} onCloseHandler={() => {
+        setIsOpenDialog(false)
+      }} />}
     </div>
   )
 }
