@@ -5,6 +5,7 @@ import {
   setCandidates
 } from './shuffleSlice';
 import './TemplateDialog.css'
+import './TemplateDialog-mobile.css'
 import { Template } from "../../entity/Template";
 
 export function TemplateDialog(props: TemplateDialogPropType) {
@@ -41,8 +42,8 @@ export function TemplateDialog(props: TemplateDialogPropType) {
               <ul className="TemplateDialog-template-list">
                 {props.templates && props.templates.map((template, index) => {
                   return (
-                    <li className={["TemplateDialog-template-list-item", selectTemplate?.title === template.title ? "__selected" : ""].join(" ")}>
-                      <button key={index} onClick={() => handleTemplateClick(index)}>{template.title}</button>
+                    <li key={index} className={["TemplateDialog-template-list-item", selectTemplate?.title === template.title ? "__selected" : ""].join(" ")}>
+                      <button onClick={() => handleTemplateClick(index)}>{template.title}</button>
                     </li>
                   )
                 })}
