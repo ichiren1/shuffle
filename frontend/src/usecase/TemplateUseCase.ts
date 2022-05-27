@@ -4,7 +4,6 @@ import { fetchTemplates as fetchTemplatesFromQuery } from "../query/StorageQuery
 import { saveTemplates as saveTemplatesToRepository } from "../repository/TemplateRepository"
 
 export async function fetchTemplates(): Promise<Template[] | null> {
-  console.log("fetchTempletes")
   return fetchTemplatesFromQuery()
 }
 

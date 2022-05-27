@@ -1,0 +1,11 @@
+.TemplateDialog-overlay {
+  z-index: 1000;
+}
+
+.TemplateDialog-template-list {
+  width: 150px;
+}
+
+.TemplateDialog-selected-template-preview-title {
+  margin-top: 0;
+}
