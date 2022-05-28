@@ -1,6 +1,7 @@
 import { Shuffle } from './features/shuffle/Shuffle'
 import { GlobalHeader } from './GlobalHeader'
 import './App.css';
+import './tailwind.css';
 
 function App() {
   return (

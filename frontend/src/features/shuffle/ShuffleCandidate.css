@@ -25,6 +25,10 @@
   box-shadow: 0 8px 8px rgba(183, 193, 211, 0.5);
 }
 
+.ShuffleCandidate-menu-button {
+  padding: 4px;
+}
+
 .ShuffleCandidate-menu button {
   background: white;
   padding: 4px;
