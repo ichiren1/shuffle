@@ -51,7 +51,7 @@ export function TemplateDialog(props: TemplateDialogPropType) {
             </div>
             <div className="TemplateDialog-selected-template-preview-wrapper">
               <h5 className="TemplateDialog-selected-template-preview-title">候補者</h5>
-              {!selectTemplate && <div>テンプレートが選択されていません。左からテンプレートを選択してください。</div>}
+              {props.templates && !selectTemplate && <div>テンプレートが選択されていません。左からテンプレートを選択してください。</div>}
               {selectTemplate && (
                 <div className="TemplateDialog-selected-template-preview">
                   <div>{selectTemplate.title}</div>
