@@ -58,47 +58,51 @@ export function ShuffleCandidate() {
   return (
     <div className="ShuffleCandidate">
       <div className="ShuffleCandidate-header">
-        <h2 className="ShuffleCandidate-title">候補</h2>
-        <div className="ShuffleCandidate-menu-wrapper">
-          <button className="ShuffleCandidate-menu-button" onClick={() => setIsOpenMenu(!isOpenMenu)}>
-            <img className="w-5 h-5" src={menuIcon} alt="Open candidate menu"></img>
-          </button>
-          <div className={["ShuffleCandidate-menu", !isOpenMenu ? "__hide" : ""].join(" ")}>
-            <button onClick={handleSaveTemplates}>現在の候補者をテンプレートとして保存する</button>
-            <button onClick={handleLoadTemplates}>保存したテンプレートから読み込む</button>
+        <div className="ShuffleCandidate-sub-header">
+          <h2 className="ShuffleCandidate-title">候補</h2>
+          <div className="ShuffleCandidate-menu-wrapper">
+            <button className="ShuffleCandidate-menu-button" onClick={() => setIsOpenMenu(!isOpenMenu)}>
+              <img className="w-5 h-5" src={menuIcon} alt="Open candidate menu"></img>
+            </button>
+            <div className={["ShuffleCandidate-menu", !isOpenMenu ? "__hide" : ""].join(" ")}>
+              <button onClick={handleSaveTemplates}>現在の候補者をテンプレートとして保存する</button>
+              <button onClick={handleLoadTemplates}>保存したテンプレートから読み込む</button>
+            </div>
           </div>
         </div>
+        <div className="ShuffleCandidate-candidate-name-input-wrapper">
+          <input className="ShuffleCandidate-candidate-name-input" placeholder="名前" value={name} onKeyDown={handleKeyboardEvent} onChange={(e) => setName(e.target.value)} size={24} />
+          {name !== "" && <button className="ShuffleCandidate-name-clear-button" onClick={() => setName("")}>
+            <img className="w-5 h-5" src={closeIcon} alt="remove candidate button"></img>
+          </button>}
+        </div>
+        <button className="ShuffleCandidate-candidate-add-button" onClick={() => {
+          dispatch(addCandidate(name));
+          const result = name.match(/^(?<n>[^\d]+)(?<i>\d+)$/)
+          if (result && result.groups) {
+            const { n, i } = result.groups;
+            setName(n + (parseInt(i) + 1));
+            return;
+          }
+          setName(name);
+        }}>追加</button>
       </div>
-      <div className="ShuffleCandidate-candidate-name-input-wrapper">
-        <input className="ShuffleCandidate-candidate-name-input" placeholder="名前" value={name} onKeyDown={handleKeyboardEvent} onChange={(e) => setName(e.target.value)} size={24} />
-        {name !== "" && <button className="ShuffleCandidate-name-clear-button" onClick={() => setName("")}>
-          <img className="w-5 h-5" src={closeIcon} alt="remove candidate button"></img>
-        </button>}
+      <div className="mt-2">
+        <div>{'現在の候補者数: ' + candidates.length + '人'}</div>
+        {candidates.length === 0 && <div id="ShuffleCandidate-empty-message">候補者がいません。<br />追加ボタンから追加してください。</div>}
+        <ul className="ShuffleCandidate-candidates">
+          {candidates.map((c, index) => {
+            return (
+              <li className="ShuffleCandidate-candidate-item" key={c.id}>
+                <input type="text" className="ShuffleCandidate-candidate-item-name-input" defaultValue={c.name} onChange={(e) => dispatch(modifyCandidate({ index, name: e.target.value }))} size={24}></input>
+                <button className="ShuffleCandidate-candidate-remove-button" onClick={() => dispatch(removeCandidate(c.id))}>
+                  <img className="w-5 h-5" src={closeIcon} alt="remove candidate"></img>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-      <button className="ShuffleCandidate-candidate-add-button" onClick={() => {
-        dispatch(addCandidate(name));
-        const result = name.match(/^(?<n>[^\d]+)(?<i>\d+)$/)
-        if (result && result.groups) {
-          const { n, i } = result.groups;
-          setName(n + (parseInt(i) + 1));
-          return;
-        }
-        setName(name);
-      }}>追加</button>
-      <div>{'現在の候補者数: ' + candidates.length + '人'}</div>
-      {candidates.length === 0 && <div id="ShuffleCandidate-empty-message">候補者がいません。<br />追加ボタンから追加してください。</div>}
-      <ul className="ShuffleCandidate-candidates">
-        {candidates.map((c, index) => {
-          return (
-            <li className="ShuffleCandidate-candidate-item" key={c.id}>
-              <button className="ShuffleCandidate-candidate-remove-button" onClick={() => dispatch(removeCandidate(c.id))}>
-                <img className="w-5 h-5" src={closeIcon} alt="remove candidate"></img>
-              </button>
-              <input type="text" className="ShuffleCandidate-candidate-item-name-input" defaultValue={c.name} onChange={(e) => dispatch(modifyCandidate({ index, name: e.target.value }))} size={24}></input>
-            </li>
-          );
-        })}
-      </ul>
       {isOpenDialog && <TemplateDialog templates={templates} onCloseHandler={() => {
         setIsOpenDialog(false)
       }} />}

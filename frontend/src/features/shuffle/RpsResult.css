@@ -16,6 +16,16 @@
   margin: 4px 0;
 }
 
+.RpsResult-winner-name::before {
+  content: "『";
+  padding-right: 6px;
+}
+
+.RpsResult-winner-name::after {
+  content: "』";
+  padding-left: 6px;
+}
+
 .RpsResult-rps-icon {
   padding-right: 8px;
 }

@@ -4,6 +4,16 @@
 
 .ChooseOneResult-result {
   padding-inline-start: 8px;
-  margin-top: 40px;
+  margin-top: 12px;
   clear: left;
+}
+
+.ChooseOneResult-result::before {
+  content: "『";
+  padding-right: 6px;
+}
+
+.ChooseOneResult-result::after {
+  content: "』";
+  padding-left: 6px;
 }

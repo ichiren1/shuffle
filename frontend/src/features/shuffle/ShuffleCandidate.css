@@ -8,6 +8,10 @@
 }
 
 .ShuffleCandidate-header {
+  border-bottom: 1px solid #cacaca;
+}
+
+.ShuffleCandidate-sub-header {
   display: flex;
 }
 
@@ -18,11 +22,14 @@
 .ShuffleCandidate-menu {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 350px;
   position: absolute;
   right: 0;
   z-index: 1000;
+  padding: 8px;
+  border: 1px solid #cacaca;
   box-shadow: 0 8px 8px rgba(183, 193, 211, 0.5);
+  background: white;
 }
 
 .ShuffleCandidate-menu-button {
@@ -32,7 +39,12 @@
 .ShuffleCandidate-menu button {
   background: white;
   padding: 4px;
+  border: none;
   border-radius: 0;
+}
+
+.ShuffleCandidate-menu button:nth-child(n+2) {
+  border-top: 1px solid #cacaca;
 }
 
 .ShuffleCandidate-menu.__hide {
@@ -60,6 +72,7 @@
   display: inline-flex;
   position: relative;
   align-items: center;
+  margin-bottom: 12px;
 }
 
 .ShuffleCandidate-name-clear-button {
@@ -75,8 +88,9 @@
 }
 
 .ShuffleCandidate-candidate-add-button {
-  padding: 7px 12px;
+  padding: 9px 12px;
   cursor: pointer;
+  border-radius: 0;
 }
 
 #ShuffleCandidate-empty-message {
@@ -90,6 +104,7 @@
 .ShuffleCandidate-candidate-item {
   display: flex;
   margin: 12px 0;
+  align-items: center;
 }
 
 .ShuffleCandidate-candidate-item-name-input {
@@ -98,9 +113,10 @@
 }
 
 .ShuffleCandidate-candidate-remove-button {
-  margin-right: 12px;
+  margin-left: 8px;
   cursor: pointer;
-  padding: 0 8px;
+  padding: 8px;
+  border: none;
 }
 
 .ShuffleCandidate-candidate-remove-button:hover {

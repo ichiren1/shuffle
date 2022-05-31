@@ -35,7 +35,7 @@ export function RpsResult(props: RpsResultPropType) {
             <div>🏆 Winner 🏆</div>
             {props.state.winner.map((winner, index) => {
               return (
-                <div key={index}>{winner.name}</div>
+                <div className='RpsResult-winner-name' key={index}>{winner.name}</div>
               )
             })}
           </>
