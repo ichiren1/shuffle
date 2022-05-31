@@ -85,16 +85,16 @@ export function ShuffleCandidate() {
         }
         setName(name);
       }}>追加</button>
-      <div>{'現在の候補者数: ' + candidates.length + '人'}</div>
+      <div className="mt-6">{'現在の候補者数: ' + candidates.length + '人'}</div>
       {candidates.length === 0 && <div id="ShuffleCandidate-empty-message">候補者がいません。<br />追加ボタンから追加してください。</div>}
       <ul className="ShuffleCandidate-candidates">
         {candidates.map((c, index) => {
           return (
             <li className="ShuffleCandidate-candidate-item" key={c.id}>
+              <input type="text" className="ShuffleCandidate-candidate-item-name-input" defaultValue={c.name} onChange={(e) => dispatch(modifyCandidate({ index, name: e.target.value }))} size={24}></input>
               <button className="ShuffleCandidate-candidate-remove-button" onClick={() => dispatch(removeCandidate(c.id))}>
                 <img className="w-5 h-5" src={closeIcon} alt="remove candidate"></img>
               </button>
-              <input type="text" className="ShuffleCandidate-candidate-item-name-input" defaultValue={c.name} onChange={(e) => dispatch(modifyCandidate({ index, name: e.target.value }))} size={24}></input>
             </li>
           );
         })}

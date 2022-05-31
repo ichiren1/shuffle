@@ -90,6 +90,7 @@
 .ShuffleCandidate-candidate-item {
   display: flex;
   margin: 12px 0;
+  align-items: center;
 }
 
 .ShuffleCandidate-candidate-item-name-input {
@@ -98,9 +99,10 @@
 }
 
 .ShuffleCandidate-candidate-remove-button {
-  margin-right: 12px;
+  margin-left: 12px;
   cursor: pointer;
-  padding: 0 8px;
+  padding: 4px;
+  border: none;
 }
 
 .ShuffleCandidate-candidate-remove-button:hover {
