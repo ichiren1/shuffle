@@ -1,0 +1,25 @@
+#RouletteResult-canvas {
+  width: 200px;
+  height: 200px;
+  font-size: 32px;
+}
+
+.RouletteResult-title {
+  margin-bottom: 8px;
+  float: left;
+}
+
+.RouletteResult-result {
+  margin: 4px;
+  clear: left;
+}
+
+.RouletteResult-result::before {
+  content: "『";
+  padding-right: 6px;
+}
+
+.RouletteResult-result::after {
+  content: "』";
+  padding-left: 6px;
+}

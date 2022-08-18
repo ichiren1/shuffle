@@ -1,7 +1,8 @@
 import { ShuffleResult as ShuffleResultComponent } from './ShuffleResult'
 import { ChooseOneResult as ChooseOneResultComponent } from './ChooseOneResult'
 import { RpsResult as RpsResultComponent } from './RpsResult'
-import { ChooseOneResult, RpsResult, ShuffleResult } from './request'
+import { RouletteResult as RouletteResultComponent } from './RouletteResult'
+import { ChooseOneResult, RouletteResult, RpsResult, ShuffleResult } from './request'
 import './ShuffleResultWrapper.css';
 import './ShuffleResultWrapper-mobile.css';
 
@@ -15,6 +16,7 @@ export function ShuffleResultWrapper(props: ShuffleResultWrapperPropType) {
         {(props.results.type === 'Shuffle') && <ShuffleResultComponent candidates={props.candidates} result={props.results.result} type={'Shuffle'} />}
         {(props.results.type === 'ChooseOne') && <ChooseOneResultComponent candidates={props.candidates} result={props.results.result} type={'ChooseOne'} />}
         {(props.results.type === 'Rps') && <RpsResultComponent candidates={props.candidates} type={'Rps'} result={props.results.result} state={props.results.state} />}
+        {(props.results.type === 'Roulette') && <RouletteResultComponent candidates={props.candidates} type={'Roulette'} result={{name: props.results.result, date: props.results.date}} />}
       </div>)}
     </div>
   )
@@ -22,5 +24,5 @@ export function ShuffleResultWrapper(props: ShuffleResultWrapperPropType) {
 
 export type ShuffleResultWrapperPropType = {
   candidates: string[],
-  results: ShuffleResult | ChooseOneResult | RpsResult | null
+  results: ShuffleResult | ChooseOneResult | RpsResult | RouletteResult | null
 }
