@@ -6,6 +6,7 @@
   width: 100vw;
   font-size: 12px;
   padding-left: 16px;
+  z-index: 10000;
 }
 
 .GlobalHeader-title {
