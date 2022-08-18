@@ -6,13 +6,13 @@ import {
 } from './shuffleSlice';
 import { ShuffleResultWrapper } from './ShuffleResultWrapper';
 import { ShuffleCandidate } from './ShuffleCandidate';
-import { chooseOneRequest, ChooseOneResult, rpsRequest, RpsResult, shuffleRequest, ShuffleResult } from './request';
+import { chooseOneRequest, ChooseOneResult, rpsRequest, RpsResult, shuffleRequest, ShuffleResult, rouletteRequest, RouletteResult } from './request';
 import "./Shuffle.css";
 import "./Shuffle-mobile.css";
 
 export function Shuffle() {
   const candidates = useAppSelector(currentCandidateValue)
-  const [result, setResult] = useState<ShuffleResult | ChooseOneResult | RpsResult | null>(null);
+  const [result, setResult] = useState<ShuffleResult | ChooseOneResult | RpsResult | RouletteResult | null>(null);
 
   const handleShuffle_ = async () => {
     const response = await shuffleRequest(candidates.map(c => c.name));
@@ -29,6 +29,11 @@ export function Shuffle() {
     setResult(response);
   }
 
+  const handleRoulette_ = async () => {
+    const response = await rouletteRequest(candidates.map(c => c.name));
+    setResult(response);
+  }
+
   return (
     <div className="Shuffle">
       <ShuffleCandidate />
@@ -37,6 +42,7 @@ export function Shuffle() {
           <button className="Shuffle-action" onClick={handleShuffle_}>シャッフル</button>
           <button className="Shuffle-action" onClick={handleChooseOne_}>1人選ぶ</button>
           <button className="Shuffle-action" onClick={handleRps_}>じゃんけん</button>
+          <button className="Shuffle-action" onClick={handleRoulette_}>ルーレット</button>
         </div>
       </div>
       <ShuffleResultWrapper candidates={candidates.map(c => c.name)} results={result} />

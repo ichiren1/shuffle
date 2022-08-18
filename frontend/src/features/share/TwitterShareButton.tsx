@@ -1,4 +1,5 @@
 import { ChooseOneResultPropType } from "../shuffle/ChooseOneResult";
+import { RouletteResult } from "../shuffle/request";
 import { RpsResultPropType } from "../shuffle/RpsResult";
 import { ShuffleResultPropType } from "../shuffle/ShuffleResult";
 import './TwitterShareButton.css';
@@ -12,6 +13,8 @@ export function TwitterShareButton(props: TwitterShareButtonPropType) {
         return "1人選ぶの結果\n『 " + props.result + " 』\n";
       case 'Rps':
         return "じゃんけんの結果\n" + props.state.type === 'draw' ? 'あいこ\n' : '🏆Winner🏆\n' + props.state.winner?.map(w => { return "『 " + w.name + " 』"}).join('\n') + "\n";
+      case 'Roulette':
+        return "ルーレットの結果\n『 " + props.result + " 』\n";
     }
   }
 
@@ -31,4 +34,4 @@ export function TwitterShareButton(props: TwitterShareButtonPropType) {
   )
 }
 
-export type TwitterShareButtonPropType = ShuffleResultPropType | ChooseOneResultPropType | RpsResultPropType
+export type TwitterShareButtonPropType = ShuffleResultPropType | ChooseOneResultPropType | RpsResultPropType | RouletteResult

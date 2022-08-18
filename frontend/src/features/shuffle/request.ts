@@ -14,6 +14,10 @@ export async function rpsRequest(candidates: string[]): Promise<RpsResult> {
   return rpsLogic(candidates)
 }
 
+export async function rouletteRequest(candidates: string[]): Promise<RouletteResult> {
+  return rouletteLogic(candidates)
+}
+
 function fisherYatesShuffle_(candidates: string[]): string[] {
   for (let i = candidates.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
@@ -59,6 +63,13 @@ export type RpsResult = {
         }[]
       | null
   }
+}
+
+export type RouletteResult = {
+  candidates: string[]
+  type: "Roulette"
+  result: string
+  date: Date
 }
 
 /**
@@ -204,6 +215,15 @@ const chooseOneLogic = async (
     candidates,
     type: "ChooseOne",
     result: candidates[Math.floor(Math.random() * candidates.length)],
+  }
+}
+
+const rouletteLogic = async (candidates: string[]): Promise<RouletteResult> => {
+  return {
+    candidates,
+    type: "Roulette",
+    result: candidates[Math.floor(Math.random() * candidates.length)],
+    date: new Date()
   }
 }
 
