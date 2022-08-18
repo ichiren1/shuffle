@@ -5,7 +5,7 @@
     display: flex;
     flex-wrap: wrap;
     /* actionが隠れてしまうの用 */
-    margin-bottom: 64px;
+    margin-bottom: 94px;
   }
 
   .Shuffle-actions-wrapper {
@@ -22,5 +22,6 @@
 
   .Shuffle-action {
     margin: 4px;
+    background: white;
   }
 }
