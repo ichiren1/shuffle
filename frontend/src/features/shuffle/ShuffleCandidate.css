@@ -115,7 +115,6 @@
 .ShuffleCandidate-candidate-remove-button {
   margin-left: 8px;
   cursor: pointer;
-  padding: 8px;
   border: none;
 }
 
@@ -128,4 +127,12 @@
 .ShuffleCandidate-candidate-remove-button img {
   width: 20px;
   height: 20px;
+  margin: 8px;
+  max-width: none;
+}
+
+@media screen and (max-width: 350px) {
+  .ShuffleCandidate-candidate-remove-button img {
+    margin: 0;
+  }
 }
