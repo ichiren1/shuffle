@@ -43,7 +43,7 @@
   border-radius: 0;
 }
 
-.ShuffleCandidate-menu button:nth-child(n+2) {
+.ShuffleCandidate-menu button:nth-child(n + 2) {
   border-top: 1px solid #cacaca;
 }
 
@@ -123,4 +123,9 @@
   color: white;
   background: #ff2929;
   border-color: #ff2929;
+}
+
+.ShuffleCandidate-candidate-remove-button img {
+  width: 20px;
+  height: 20px;
 }
