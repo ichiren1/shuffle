@@ -188,7 +188,12 @@ export const RouletteResult = (props: RouletteResultPropType) => {
     <>
       <div>
         <h3 className="RouletteResult-title">ルーレットの結果</h3>
-        <TwitterShareButton result={props.result.name} candidates={props.candidates} type={props.type} date={props.result.date} />
+        <TwitterShareButton
+          result={props.result.name}
+          candidates={props.candidates}
+          type={props.type}
+          date={props.result.date}
+        />
         <div className="RouletteResult-result">{result}</div>
       </div>
       <canvas
