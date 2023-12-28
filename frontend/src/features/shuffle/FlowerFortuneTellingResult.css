@@ -17,6 +17,7 @@
   border: 1px solid #ccc;
   border-radius: 32px;
   width: 120px;
+  height: 50px;
   position: absolute;
   transform-origin: -10px;
   rotate: 0deg;
