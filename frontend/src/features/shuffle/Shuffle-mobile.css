@@ -5,7 +5,10 @@
     display: flex;
     flex-wrap: wrap;
     /* actionが隠れてしまうの用 */
-    margin-bottom: 94px;
+    margin-bottom: 124px;
+
+    /* なぜか横スクロールが発生してもらうのを防ぐ */
+    overflow-x: hidden;
   }
 
   .Shuffle-actions-wrapper {

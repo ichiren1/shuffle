@@ -1,0 +1,58 @@
+.EenyMeenyMinyMoeResult-flavor-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.EenyMeenyMinyMoeResult-flavor-phrase-play {
+  color: green;
+  padding: 2px 8px;
+  margin-right: 8px;
+}
+
+.EenyMeenyMinyMoeResult-flavor {
+  margin: 16px 0;
+}
+
+.EenyMeenyMinyMoeResult-flavor-select {
+  border: 1px solid #cacaca;
+  padding: 6px 8px;
+}
+
+.EenyMeenyMinyMoeResult-flavor-phrase {
+  max-width: 300px;
+
+  span.__selected {
+    color: #2962ff;
+    text-emphasis: circle;
+    border-bottom: 1px solid #2962ff;
+  }
+}
+
+.EenyMeenyMinyMoeResult-result {
+  padding-inline-start: 8px;
+  margin-bottom: 12px;
+  clear: left;
+
+  &.__hide {
+    visibility: hidden;
+  }
+}
+
+.EenyMeenyMinyMoeResult-result::before {
+  content: "『";
+  padding-right: 6px;
+}
+
+.EenyMeenyMinyMoeResult-result::after {
+  content: "』";
+  padding-left: 6px;
+}
+
+.EenyMeenyMinyMoeResult-item.__selected::before {
+  content: "👉";
+  color: #2962ff;
+}
+
+.EenyMeenyMinyMoeResult-item.__selected span {
+  border-bottom: 1px solid #2962ff;
+}

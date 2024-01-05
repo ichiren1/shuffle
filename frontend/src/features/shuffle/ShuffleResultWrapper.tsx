@@ -3,6 +3,7 @@ import { ChooseOneResult as ChooseOneResultComponent } from "./ChooseOneResult";
 import { RpsResult as RpsResultComponent } from "./RpsResult";
 import { RouletteResult as RouletteResultComponent } from "./RouletteResult";
 import { FlowerFortuneTellingResult as FlowerFortuneTellingResultComponent } from "./FlowerFortuneTellingResult";
+import { EenyMeenyMinyMoeResult as EenyMeenyMinyMoeResultComponent } from "./EenyMeenyMinyMoeResult";
 import "./ShuffleResultWrapper.css";
 import "./ShuffleResultWrapper-mobile.css";
 import { ChooseOneResult } from "./requests/chooseOne";
@@ -11,6 +12,7 @@ import { RouletteResult } from "./requests/roulette";
 import { ShuffleResult } from "./requests/shuffle";
 import { FlowerFortuneTellingResult } from "./requests/flowerFortuneTelling";
 import { useEffect, useRef } from "react";
+import { EenyMeenyMinyMoeResult } from "./requests/eenyMeenyMinyMoe";
 
 export function ShuffleResultWrapper(props: ShuffleResultWrapperPropType) {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -68,6 +70,13 @@ export function ShuffleResultWrapper(props: ShuffleResultWrapperPropType) {
               date={props.results.date}
             />
           )}
+          {props.results.type === "EenyMeenyMinyMoe" && (
+            <EenyMeenyMinyMoeResultComponent
+              candidates={props.candidates}
+              type={"EenyMeenyMinyMoe"}
+              date={props.results.date}
+            />
+          )}
         </div>
       )}
     </div>
@@ -82,5 +91,6 @@ export type ShuffleResultWrapperPropType = {
     | RpsResult
     | RouletteResult
     | FlowerFortuneTellingResult
+    | EenyMeenyMinyMoeResult
     | null;
 };
