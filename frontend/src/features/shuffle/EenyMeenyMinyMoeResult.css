@@ -20,22 +20,22 @@
 
 .EenyMeenyMinyMoeResult-flavor-phrase {
   max-width: 300px;
+}
 
-  span.__selected {
-    color: #2962ff;
-    text-emphasis: circle;
-    border-bottom: 1px solid #2962ff;
-  }
+.EenyMeenyMinyMoeResult-flavor-phrase span.__selected {
+  color: #2962ff;
+  text-emphasis: circle;
+  border-bottom: 1px solid #2962ff;
 }
 
 .EenyMeenyMinyMoeResult-result {
   padding-inline-start: 8px;
   margin-bottom: 12px;
   clear: left;
+}
 
-  &.__hide {
-    visibility: hidden;
-  }
+.EenyMeenyMinyMoeResult-result.__hide {
+  visibility: hidden;
 }
 
 .EenyMeenyMinyMoeResult-result::before {
