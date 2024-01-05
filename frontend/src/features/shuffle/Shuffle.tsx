@@ -14,6 +14,10 @@ import { RpsResult, rpsRequest } from "./requests/rockPaperScissor";
 import { RouletteResult, rouletteRequest } from "./requests/roulette";
 import { ShuffleResult, shuffleRequest } from "./requests/shuffle";
 import { ChooseOneResult, chooseOneRequest } from "./requests/chooseOne";
+import {
+  EenyMeenyMinyMoeResult,
+  eenyMeenyMinyMoeRequest,
+} from "./requests/eenyMeenyMinyMoe";
 
 export function Shuffle() {
   const candidates = useAppSelector(currentCandidateValue);
@@ -23,6 +27,7 @@ export function Shuffle() {
     | RpsResult
     | RouletteResult
     | FlowerFortuneTellingResult
+    | EenyMeenyMinyMoeResult
     | null
   >(null);
 
@@ -53,6 +58,13 @@ export function Shuffle() {
     setResult(response);
   };
 
+  const handleEenyMeenyMinyMoe_ = async () => {
+    const response = await eenyMeenyMinyMoeRequest(
+      candidates.map((c) => c.name)
+    );
+    setResult(response);
+  };
+
   return (
     <div className="Shuffle">
       <ShuffleCandidate />
@@ -75,6 +87,10 @@ export function Shuffle() {
             onClick={handleFlowerFortuneTelling_}
           >
             花占い
+          </button>
+          <button className="Shuffle-action" onClick={handleEenyMeenyMinyMoe_}>
+            どちらにしようかな
+            <span className="Shuffle-action-warning">※音が出ます</span>
           </button>
         </div>
       </div>
