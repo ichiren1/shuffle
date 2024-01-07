@@ -90,7 +90,9 @@ export function Shuffle() {
           </button>
           <button className="Shuffle-action" onClick={handleEenyMeenyMinyMoe_}>
             どちらにしようかな
-            <span className="Shuffle-action-warning">※音が出ます</span>
+            <span className="Shuffle-action-warning">
+              ※音が出る可能性があります
+            </span>
           </button>
         </div>
       </div>
