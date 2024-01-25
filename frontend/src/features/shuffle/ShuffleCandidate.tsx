@@ -61,6 +61,12 @@ export function ShuffleCandidate() {
     setIsOpenDialog(true);
   };
 
+  const handlePermalink = async () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("candidates", candidates.map((c) => c.name).join(","));
+    window.prompt("URLをコピーしてください", url.toString());
+  };
+
   return (
     <div className="ShuffleCandidate">
       <div className="ShuffleCandidate-header">
@@ -88,6 +94,9 @@ export function ShuffleCandidate() {
               </button>
               <button onClick={handleLoadTemplates}>
                 保存したテンプレートから読み込む
+              </button>
+              <button onClick={handlePermalink}>
+                現在の候補者を入力済みのURLを生成する
               </button>
             </div>
           </div>

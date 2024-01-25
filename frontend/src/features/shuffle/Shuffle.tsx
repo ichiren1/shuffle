@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useAppSelector } from "../../app/hooks";
-import { currentCandidateValue } from "./shuffleSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { currentCandidateValue, setCandidates } from "./shuffleSlice";
 import { ShuffleResultWrapper } from "./ShuffleResultWrapper";
 import { ShuffleCandidate } from "./ShuffleCandidate";
 import "./Shuffle.css";
@@ -21,6 +21,7 @@ import {
 
 export function Shuffle() {
   const candidates = useAppSelector(currentCandidateValue);
+  const dispatch = useAppDispatch();
   const [result, setResult] = useState<
     | ShuffleResult
     | ChooseOneResult
@@ -30,6 +31,17 @@ export function Shuffle() {
     | EenyMeenyMinyMoeResult
     | null
   >(null);
+
+  useEffect(() => {
+    const { search } = window.location;
+    const params = new URLSearchParams(search);
+    console.log(search, params.get("candidates"));
+    const candidates = params.get("candidates");
+    if (candidates) {
+      const decodedCandidates = decodeURI(candidates);
+      dispatch(setCandidates(decodedCandidates.split(",")));
+    }
+  }, [dispatch]);
 
   const handleShuffle_ = async () => {
     const response = await shuffleRequest(candidates.map((c) => c.name));
