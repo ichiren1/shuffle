@@ -184,6 +184,7 @@ export const RouletteResult = (props: RouletteResultPropType) => {
     }, 10);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.result.date, props.result.name]);
+
   return (
     <>
       <div>
@@ -202,6 +203,11 @@ export const RouletteResult = (props: RouletteResultPropType) => {
         width={CANVAS_WIDTH}
         height={CANVAS_HEIGHT}
       ></canvas>
+      {!isRotating && props.candidates.length > 1 && (
+        <div>
+          <button className="p-2" onClick={props.resultAction}>当選者を除外してもう一回</button>
+        </div>
+      )}
     </>
   );
 };
@@ -220,4 +226,5 @@ type RouletteResultPropType = {
     name: string;
     date: Date;
   };
+  resultAction: () => void;
 };

@@ -15,12 +15,12 @@ export function TwitterShareButton(props: TwitterShareButtonPropType) {
         return "じゃんけんの結果\n" + props.state.type === "draw"
           ? "あいこ\n"
           : "🏆Winner🏆\n" +
-              props.state.winner
-                ?.map((w) => {
-                  return "『 " + w.name + " 』";
-                })
-                .join("\n") +
-              "\n";
+          props.state.winner
+            ?.map((w) => {
+              return "『 " + w.name + " 』";
+            })
+            .join("\n") +
+          "\n";
       case "Roulette":
         return "ルーレットの結果\n『 " + props.result + " 』\n";
     }
@@ -49,7 +49,7 @@ export function TwitterShareButton(props: TwitterShareButtonPropType) {
       <img
         className="TwitterShareButton-twitter-icon"
         alt="twitter logo"
-        src={window.location.origin + "/twitter-icon128.png"}
+        src={window.location.origin + "/x-logo-black128.png"}
       ></img>
     </a>
   );

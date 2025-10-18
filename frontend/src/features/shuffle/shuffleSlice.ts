@@ -5,6 +5,7 @@ import { RootState } from "../../app/store"
 export type Candidate = {
   name: string
   id: string
+  isAvailable: boolean
 }
 
 export interface ShuffleState {
@@ -26,6 +27,7 @@ export const shuffleSlice = createSlice({
       state.candidates.push({
         name: action.payload,
         id: ulid(),
+        isAvailable: true,
       })
     },
     setCandidates: (state, action: PayloadAction<string[]>) => {
@@ -36,6 +38,7 @@ export const shuffleSlice = createSlice({
         return {
           name: p,
           id: ulid(),
+          isAvailable: true,
         }
       })
     },
@@ -51,13 +54,26 @@ export const shuffleSlice = createSlice({
     removeCandidate: (state, action: PayloadAction<string>) => {
       state.candidates = state.candidates.filter((c) => c.id !== action.payload)
     },
+    excludeCandidate: (state, action: PayloadAction<string>) => {
+      state.candidates = state.candidates.map((c) => {
+        if (c.name === action.payload) {
+          return { ...c, isAvailable: false }
+        }
+        return c
+      })
+    },
+    resetCandidateAvailability: (state) => {
+      state.candidates = state.candidates.map(c => {
+        return { ...c, isAvailable: true }
+      })
+    }
   },
 })
 
 export const currentCandidateValue = (state: RootState) =>
   state.shuffle.candidates
 
-export const { addCandidate, removeCandidate, modifyCandidate, setCandidates } =
+export const { addCandidate, removeCandidate, modifyCandidate, setCandidates, excludeCandidate, resetCandidateAvailability } =
   shuffleSlice.actions
 
 export default shuffleSlice.reducer

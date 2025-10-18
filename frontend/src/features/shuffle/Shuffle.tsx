@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { currentCandidateValue, setCandidates } from "./shuffleSlice";
+import { currentCandidateValue, setCandidates, excludeCandidate } from "./shuffleSlice";
 import { ShuffleResultWrapper } from "./ShuffleResultWrapper";
 import { ShuffleCandidate } from "./ShuffleCandidate";
 import "./Shuffle.css";
@@ -35,7 +35,6 @@ export function Shuffle() {
   useEffect(() => {
     const { search } = window.location;
     const params = new URLSearchParams(search);
-    console.log(search, params.get("candidates"));
     const candidates = params.get("candidates");
     if (candidates) {
       const decodedCandidates = decodeURI(candidates);
@@ -43,39 +42,58 @@ export function Shuffle() {
     }
   }, [dispatch]);
 
+  const getAvailableCandidates_ = () => {
+    return candidates.filter((c) => c.isAvailable);
+  }
+
   const handleShuffle_ = async () => {
-    const response = await shuffleRequest(candidates.map((c) => c.name));
+    const response = await shuffleRequest(getAvailableCandidates_().map((c) => c.name));
     setResult(response);
   };
 
   const handleChooseOne_ = async () => {
-    const response = await chooseOneRequest(candidates.map((c) => c.name));
+    const response = await chooseOneRequest(getAvailableCandidates_().map((c) => c.name));
     setResult(response);
   };
 
   const handleRps_ = async () => {
-    const response = await rpsRequest(candidates.map((c) => c.name));
+    const response = await rpsRequest(getAvailableCandidates_().map((c) => c.name));
     setResult(response);
   };
 
   const handleRoulette_ = async () => {
-    const response = await rouletteRequest(candidates.map((c) => c.name));
+    const response = await rouletteRequest(getAvailableCandidates_().map((c) => c.name));
+    setResult(response);
+  };
+
+  const handleRouletteAgain_ = async (luckyWinner: string) => {
+    dispatch(excludeCandidate(luckyWinner));
+    const response = await rouletteRequest(getAvailableCandidates_().map((c) => c.name).filter((c) => c !== luckyWinner));
     setResult(response);
   };
 
   const handleFlowerFortuneTelling_ = async () => {
     const response = await flowerFortuneTellingRequest(
-      candidates.map((c) => c.name)
+      getAvailableCandidates_().map((c) => c.name)
     );
     setResult(response);
   };
 
   const handleEenyMeenyMinyMoe_ = async () => {
     const response = await eenyMeenyMinyMoeRequest(
-      candidates.map((c) => c.name)
+      getAvailableCandidates_().map((c) => c.name)
     );
     setResult(response);
   };
+
+  const resultAction = async () => {
+    switch (result?.type) {
+      case "Roulette":
+        return handleRouletteAgain_(result.result);
+      default:
+        return Promise.resolve();
+    }
+  }
 
   return (
     <div className="Shuffle">
@@ -107,8 +125,9 @@ export function Shuffle() {
         </div>
       </div>
       <ShuffleResultWrapper
-        candidates={candidates.map((c) => c.name)}
+        candidates={getAvailableCandidates_().map((c) => c.name)}
         results={result}
+        resultAction={resultAction}
       />
     </div>
   );
