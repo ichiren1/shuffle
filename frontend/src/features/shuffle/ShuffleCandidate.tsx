@@ -6,6 +6,7 @@ import {
   modifyCandidate,
   removeCandidate,
   currentCandidateValue,
+  resetCandicateAvailability
 } from "./shuffleSlice";
 import "./ShuffleCandidate.css";
 import "./ShuffleCandidate-mobile.css";
@@ -67,6 +68,10 @@ export function ShuffleCandidate() {
     window.prompt("URLをコピーしてください", url.toString());
   };
 
+  const handleLuckyWinnersReset = () => {
+    dispatch(resetCandicateAvailability())
+  }
+
   return (
     <div className="ShuffleCandidate">
       <div className="ShuffleCandidate-header">
@@ -114,6 +119,8 @@ export function ShuffleCandidate() {
             <button
               className="ShuffleCandidate-name-clear-button"
               onClick={() => setName("")}
+              title="候補から削除"
+              aria-label="候補から削除"
             >
               <img
                 className="w-5 h-5"
@@ -136,11 +143,16 @@ export function ShuffleCandidate() {
             setName(name);
           }}
         >
-          追加
+          エントリーする
         </button>
       </div>
       <div className="mt-2">
-        <div>{"現在の候補者数: " + candidates.length + "人"}</div>
+        <div>
+          <span>{"現在の候補者数: " + candidates.length + "人"}</span>
+          {candidates.some((c) => !c.isAvailable) && (
+            <button className="ShuffleCandidate-lucky-winner-reset-button" onClick={handleLuckyWinnersReset}>当選者をリセット</button>
+          )}
+        </div>
         {candidates.length === 0 && (
           <div id="ShuffleCandidate-empty-message">
             候補者がいません。
@@ -154,12 +166,13 @@ export function ShuffleCandidate() {
               <li className="ShuffleCandidate-candidate-item" key={c.id}>
                 <input
                   type="text"
-                  className="ShuffleCandidate-candidate-item-name-input"
+                  className={["ShuffleCandidate-candidate-item-name-input", !c.isAvailable ? "__disabled" : ""].join(" ")}
                   defaultValue={c.name}
                   onChange={(e) =>
                     dispatch(modifyCandidate({ index, name: e.target.value }))
                   }
                   size={24}
+                  disabled={!c.isAvailable}
                 ></input>
                 <button
                   className="ShuffleCandidate-candidate-remove-button"

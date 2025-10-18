@@ -112,6 +112,12 @@
   border: 1px solid #cacaca;
 }
 
+.ShuffleCandidate-candidate-item-name-input.__disabled {
+  background: #f0f0f0;
+  color: #cacaca;
+  cursor: not-allowed;
+}
+
 .ShuffleCandidate-candidate-remove-button {
   margin-left: 8px;
   cursor: pointer;
@@ -135,4 +141,9 @@
   .ShuffleCandidate-candidate-remove-button img {
     margin: 0;
   }
+}
+
+.ShuffleCandidate-lucky-winner-reset-button {
+  margin-left: 12px;
+  padding: 4px;
 }

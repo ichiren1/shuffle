@@ -60,6 +60,7 @@ export function ShuffleResultWrapper(props: ShuffleResultWrapperPropType) {
               candidates={props.candidates}
               type={"Roulette"}
               result={{ name: props.results.result, date: props.results.date }}
+              resultAction={props.resultAction}
             />
           )}
           {props.results.type === "FlowerFortuneTelling" && (
@@ -84,13 +85,14 @@ export function ShuffleResultWrapper(props: ShuffleResultWrapperPropType) {
 }
 
 export type ShuffleResultWrapperPropType = {
+  resultAction: () => void;
   candidates: string[];
   results:
-    | ShuffleResult
-    | ChooseOneResult
-    | RpsResult
-    | RouletteResult
-    | FlowerFortuneTellingResult
-    | EenyMeenyMinyMoeResult
-    | null;
+  | ShuffleResult
+  | ChooseOneResult
+  | RpsResult
+  | RouletteResult
+  | FlowerFortuneTellingResult
+  | EenyMeenyMinyMoeResult
+  | null;
 };
