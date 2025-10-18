@@ -86,12 +86,12 @@ export function Shuffle() {
     setResult(response);
   };
 
-  const resultAction = () => {
+  const resultAction = async () => {
     switch (result?.type) {
       case "Roulette":
         return handleRouletteAgain_(result.result);
       default:
-        return null;
+        return Promise.resolve();
     }
   }
 
