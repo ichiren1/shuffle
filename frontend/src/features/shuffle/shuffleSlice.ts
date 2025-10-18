@@ -62,7 +62,7 @@ export const shuffleSlice = createSlice({
         return c
       })
     },
-    resetCandicateAvailability: (state) => {
+    resetCandidateAvailability: (state) => {
       state.candidates = state.candidates.map(c => {
         return { ...c, isAvailable: true }
       })
@@ -73,7 +73,7 @@ export const shuffleSlice = createSlice({
 export const currentCandidateValue = (state: RootState) =>
   state.shuffle.candidates
 
-export const { addCandidate, removeCandidate, modifyCandidate, setCandidates, excludeCandidate, resetCandicateAvailability } =
+export const { addCandidate, removeCandidate, modifyCandidate, setCandidates, excludeCandidate, resetCandidateAvailability } =
   shuffleSlice.actions
 
 export default shuffleSlice.reducer

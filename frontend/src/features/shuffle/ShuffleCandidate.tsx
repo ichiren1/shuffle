@@ -6,7 +6,7 @@ import {
   modifyCandidate,
   removeCandidate,
   currentCandidateValue,
-  resetCandicateAvailability
+  resetCandidateAvailability
 } from "./shuffleSlice";
 import "./ShuffleCandidate.css";
 import "./ShuffleCandidate-mobile.css";
@@ -69,7 +69,7 @@ export function ShuffleCandidate() {
   };
 
   const handleLuckyWinnersReset = () => {
-    dispatch(resetCandicateAvailability())
+    dispatch(resetCandidateAvailability())
   }
 
   return (
