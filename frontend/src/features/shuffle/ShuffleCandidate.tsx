@@ -65,7 +65,13 @@ export function ShuffleCandidate() {
   const handlePermalink = async () => {
     const url = new URL(window.location.href);
     url.searchParams.set("candidates", candidates.map((c) => c.name).join(","));
-    window.prompt("URLをコピーしてください", url.toString());
+
+    navigator.clipboard.writeText(url.toString())
+      .then(() => alert("クリップボードにコピーしました！"))
+      .catch(() => {
+        // 権限がないブラウザの場合 fallback
+        window.prompt("以下をコピーしてください:", url.toString());
+      });
   };
 
   const handleLuckyWinnersReset = () => {
